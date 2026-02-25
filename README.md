@@ -16,7 +16,7 @@ A simple weather application built using HTML, CSS, and JavaScript.
 - OpenWeather API
 
 ## 🔗 Live Demo
-https://YOUR-USERNAME.github.io/weather-app/
+https://24a31a4393.github.io/weather-app/
 
 ## 📦 How It Works
 1. Enter city name
