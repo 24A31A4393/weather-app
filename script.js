@@ -8,7 +8,7 @@ document.getElementById("city").addEventListener("keypress", function(e) {
 });
 
 function getWeather() {
-    const city = document.getElementById("city").value;
+    const city = document.getElementById("city").value.trim();
     const resultDiv = document.getElementById("result");
 
     if (city === "") {
@@ -18,12 +18,12 @@ function getWeather() {
 
     resultDiv.innerHTML = "Loading... ⏳";
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},IN&appid=${apiKey}&units=metric`;
 
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        if (data.cod === 200) {
+        if (data.cod == 200) {
             const icon = data.weather[0].icon;
             resultDiv.innerHTML =
                 `<h3>${data.name}</h3>
