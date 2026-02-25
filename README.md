@@ -23,9 +23,8 @@ https://24a31a4393.github.io/weather-app/
 2. Click Search
 3. App fetches live weather data using API
 
-## 📸 Screenshot
-(Add screenshot here later)
+
 
 ---
 
-Made with ❤️ by Satya Sharon
+Satya Sharon
