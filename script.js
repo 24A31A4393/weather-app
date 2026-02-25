@@ -1,6 +1,22 @@
+const apiKey = "79a9dad70d2e29bdb675ab35ab5d9e9e";
+
+document.getElementById("searchBtn").addEventListener("click", getWeather);
+document.getElementById("city").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        getWeather();
+    }
+});
+
 function getWeather() {
     const city = document.getElementById("city").value;
-    const apiKey = "79a9dad70d2e29bdb675ab35ab5d9e9e";
+    const resultDiv = document.getElementById("result");
+
+    if (city === "") {
+        resultDiv.innerHTML = "Please enter a city name!";
+        return;
+    }
+
+    resultDiv.innerHTML = "Loading... ⏳";
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
@@ -8,15 +24,17 @@ function getWeather() {
     .then(response => response.json())
     .then(data => {
         if (data.cod === 200) {
-            document.getElementById("result").innerHTML =
-                `<p>City: ${data.name}</p>
-                 <p>Temperature: ${data.main.temp} °C</p>
-                 <p>Weather: ${data.weather[0].description}</p>`;
+            const icon = data.weather[0].icon;
+            resultDiv.innerHTML =
+                `<h3>${data.name}</h3>
+                 <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+                 <p>🌡 ${data.main.temp} °C</p>
+                 <p>${data.weather[0].description}</p>`;
         } else {
-            document.getElementById("result").innerHTML = "City not found!";
+            resultDiv.innerHTML = "City not found ❌";
         }
     })
-    .catch(error => {
-        document.getElementById("result").innerHTML = "Error fetching data";
+    .catch(() => {
+        resultDiv.innerHTML = "Error fetching data!";
     });
 }
